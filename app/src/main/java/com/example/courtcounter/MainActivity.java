@@ -11,7 +11,7 @@ import com.example.courtcounter.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    int scoreA=0,scoreB=0;
+    int scoreA=0,scoreB=0,ftA=0,ftB=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addThreeForTeamA(View v) {
         scoreA+=3;
+        ftA+=1;
         displayForTeamA(scoreA);
     }
     /**
@@ -85,14 +86,19 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addThreeForTeamB(View v) {
         scoreB+=3;
+        ftB+=1;
         displayForTeamB(scoreB);
     }
     //Resets score to zero
     public void resetScore(View v) {
         scoreA=0;
         scoreB=0;
+        ftA=0;
+        ftB=0;
         displayForTeamA(scoreA);
         displayForTeamB(scoreB);
+        dispthreeptr("");
+        displayMessage("");
     }
     /**Shows the result at the end of the match*/
     public void showresult(View v) {
@@ -102,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             displayMessage("TEAM B WINS");
         else
             displayMessage("IT'S A DRAW");
+        dispthreeptr("Team A 3-ptr: "+ftA+"\nTeam B 3-ptr: "+ftB);
     }
     /**
      * Displays the given score for Team A.
@@ -121,5 +128,9 @@ public class MainActivity extends AppCompatActivity {
     private void displayMessage(String message) {
         TextView resultView = (TextView) findViewById(R.id.result);
         resultView.setText(message);
+    }
+    private void dispthreeptr(String message) {
+        TextView freeView = (TextView) findViewById(R.id.metric);
+        freeView.setText(message);
     }
 }
